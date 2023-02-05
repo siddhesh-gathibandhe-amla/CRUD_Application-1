@@ -35,14 +35,19 @@ public class TestController {
 		return empRepo.findById(id) == null ? new Employee() : empRepo.findById(id).get();
 	}
 
-	@GetMapping("/deleteemployeebyid/{id}")
-	public String DeleteEmployeeById(@PathVariable int id) {
-			empRepo.deleteById(id);
-			return "Record deleted successfully.";
-	}
-
 	@GetMapping("/getallemployee")
 	public List<Employee> getAllEmployee() {
 		return empRepo.findAll();
 	}
+
+	@GetMapping("/deleteemployeebyid/{id}")
+	public String DeleteEmployeeById(@PathVariable int id) {
+		try {
+			empRepo.deleteById(id);
+			return "Record deleted successfully.";
+		} catch (Exception e) {
+			return "Employee Id is not available.";
+		}
+	}
+
 }
