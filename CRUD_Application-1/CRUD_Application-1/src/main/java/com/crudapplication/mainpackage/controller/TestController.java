@@ -37,12 +37,8 @@ public class TestController {
 
 	@GetMapping("/deleteemployeebyid/{id}")
 	public String DeleteEmployeeById(@PathVariable int id) {
-//		try {
 			empRepo.deleteById(id);
 			return "Record deleted successfully.";
-//		} catch (Exception e) {
-//			return "Employee Id is not available.";
-//		}
 	}
 
 	@GetMapping("/getallemployee")
