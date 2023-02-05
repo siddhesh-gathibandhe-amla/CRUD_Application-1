@@ -12,28 +12,39 @@ import com.crudapplication.mainpackage.repository.EmployeeRepository;
 
 @RestController
 public class TestController {
-@Autowired EmployeeRepository empRepo;
-	
+	@Autowired
+	EmployeeRepository empRepo;
+
 	@GetMapping("/")
 	public String GetHomePage() {
 		return "This is home page";
 	}
-	
+
 	@GetMapping("/addEmployee")
 	public String AddEmployee() {
-		Employee emp=new Employee();
+		Employee emp = new Employee();
 		emp.setEmployeeName("Siddhesh Gathibandhe");
 		emp.setEmail("siddhesh@yopmail.com");
 		emp.setEmployeeNumber("9096534668");
 		empRepo.save(emp);
 		return "Employee Added";
 	}
-	
+
 	@GetMapping("/getemployee/{id}")
 	public Employee GetEmployeeById(@PathVariable int id) {
-		return empRepo.findById(id) == null ? new Employee(): empRepo.findById(id).get();
+		return empRepo.findById(id) == null ? new Employee() : empRepo.findById(id).get();
 	}
-	
+
+	@GetMapping("/deleteemployeebyid/{id}")
+	public String DeleteEmployeeById(@PathVariable int id) {
+		try {
+			empRepo.deleteById(id);
+			return "Record deleted successfully.";
+		} catch (Exception e) {
+			return "Employee Id is not available.";
+		}
+	}
+
 	@GetMapping("/getallemployee")
 	public List<Employee> getAllEmployee() {
 		return empRepo.findAll();
