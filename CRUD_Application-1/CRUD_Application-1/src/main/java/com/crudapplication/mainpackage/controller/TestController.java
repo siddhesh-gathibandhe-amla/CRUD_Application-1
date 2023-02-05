@@ -36,12 +36,12 @@ public class TestController {
 	}
 
 	@GetMapping("/getallemployee")
-	public List<Employee> getAllEmployee() {
+	public List<Employee> GetAllEmployee() {
 		return empRepo.findAll();
 	}
 
-	@GetMapping("/deleteemployeebyid/{userid}")
-	public String DeleteEmployeeById(@PathVariable int userid) {
+	@GetMapping("/removebyid/{userid}")
+	public String RemoveEmpById(@PathVariable int userid) {
 		try {
 			empRepo.deleteById(userid);
 			return "Record deleted successfully.";
