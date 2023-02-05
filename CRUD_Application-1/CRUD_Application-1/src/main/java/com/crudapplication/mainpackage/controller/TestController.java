@@ -40,10 +40,10 @@ public class TestController {
 		return empRepo.findAll();
 	}
 
-	@GetMapping("/deleteemployeebyid/{id}")
-	public String DeleteEmployeeById(@PathVariable int id) {
+	@GetMapping("/deleteemployeebyid/{userid}")
+	public String DeleteEmployeeById(@PathVariable int userid) {
 		try {
-			empRepo.deleteById(id);
+			empRepo.deleteById(userid);
 			return "Record deleted successfully.";
 		} catch (Exception e) {
 			return "Employee Id is not available.";
